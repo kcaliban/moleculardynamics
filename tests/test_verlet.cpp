@@ -1,31 +1,76 @@
 #include "verlet.h"
+#include "types.h"
 #include <gtest/gtest.h>
 #include <cmath>
 
 // Simple molecular dynamics simulation of a single atom with constant force
 TEST(VerletIntegrationTest, SingleAtomConstantForceTest) {
-    double x = 0, y = 0, z = 0;
-    double vx = 0, vy = 0, vz = 0;
-    double fx = 1, fy = 1, fz = 1;
+    Positions_t positions(3, 1);
+    Velocities_t velocities(3, 1);
+    Forces_t forces(3, 1);
+
+    positions(0, 0) = 0; positions(1, 0) = 0; positions(2, 0) = 0;
+    velocities(0, 0) = 0; velocities(1, 0) = 0; velocities(2, 0) = 0;
+    forces(0, 0) = 1; forces(1, 0) = 1; forces(2, 0) = 1;
+
     double timestep = 0.1;
     int n_steps = 10;
 
     for (int i = 0; i < n_steps; i++) {
-        verlet_step1(x, y, z, vx, vy, vz, fx, fy, fz, timestep);
-        verlet_step2(vx, vy, vz, fx, fy, fz, timestep);
+        verlet_step1(positions, velocities, forces, timestep);
+        verlet_step2(velocities, forces, timestep);
     }
 
-    double analytical_vx = n_steps * timestep * fx;
-    double analytical_vy = n_steps * timestep * fy;
-    double analytical_vz = n_steps * timestep * fz;
-    EXPECT_NEAR(vx, analytical_vx, 1e-6);
-    EXPECT_NEAR(vy, analytical_vy, 1e-6);
-    EXPECT_NEAR(vz, analytical_vz, 1e-6);
+    Velocities_t analytical_velocities = n_steps * timestep * forces;
+    EXPECT_NEAR(velocities(0, 0), analytical_velocities(0, 0), 1e-6);
+    EXPECT_NEAR(velocities(1, 0), analytical_velocities(1, 0), 1e-6);
+    EXPECT_NEAR(velocities(2, 0), analytical_velocities(2, 0), 1e-6);
 
-    double analytical_x = 0.5 * pow(n_steps * timestep, 2) * fx;
-    double analytical_y = 0.5 * pow(n_steps * timestep, 2) * fy;
-    double analytical_z = 0.5 * pow(n_steps * timestep, 2) * fz;
-    EXPECT_NEAR(x, analytical_x, 1e-6);
-    EXPECT_NEAR(y, analytical_y, 1e-6);
-    EXPECT_NEAR(z, analytical_z, 1e-6);
+    Positions_t analytical_positions = 0.5 * pow(n_steps * timestep, 2) * forces;
+    EXPECT_NEAR(positions(0, 0), analytical_positions(0, 0), 1e-6);
+    EXPECT_NEAR(positions(1, 0), analytical_positions(1, 0), 1e-6);
+    EXPECT_NEAR(positions(2, 0), analytical_positions(2, 0), 1e-6);
+}
+
+// Simple molecular dynamics simulation of multiple atoms with constant force
+TEST(VerletIntegrationTest, MultipleAtomConstantForceTest) {
+    Positions_t positions(3, 3);
+    Velocities_t velocities(3, 3);
+    Forces_t forces(3, 3);
+
+    positions(0, 0) = 0; positions(1, 0) = 0; positions(2, 0) = 0;
+    velocities(0, 0) = 1; velocities(1, 0) = 2; velocities(2, 0) = -2;
+    forces(0, 0) = 1; forces(1, 0) = 1; forces(2, 0) = 2;
+
+    positions(0, 1) = 1; positions(1, 1) = 3; positions(2, 1) = -2;
+    velocities(0, 1) = 1; velocities(1, 1) = -1; velocities(2, 1) = 2;
+    forces(0, 1) = -2; forces(1, 1) = 2; forces(2, 1) = -5;
+
+    positions(0, 2) = 2; positions(1, 2) = 3; positions(2, 2) = -5;
+    velocities(0, 2) = -1; velocities(1, 2) = 2; velocities(2, 2) = -3;
+    forces(0, 2) = 4; forces(1, 2) = 1; forces(2, 2) = 1;
+
+    double timestep = 0.1;
+    int n_steps = 10;
+
+    Velocities_t analytical_velocities(3, 3);
+    analytical_velocities = velocities + n_steps * timestep * forces;
+
+    Positions_t analytical_positions(3, 3);
+    analytical_positions = positions + velocities + 0.5 * pow(n_steps * timestep, 2) * forces;
+
+    for (int i = 0; i < n_steps; i++) {
+        verlet_step1(positions, velocities, forces, timestep);
+        verlet_step2(velocities, forces, timestep);
+    }
+
+    for (int i = 0; i < 3; i++) {
+        EXPECT_NEAR(velocities(0, i), analytical_velocities(0, i), 1e-6);
+        EXPECT_NEAR(velocities(1, i), analytical_velocities(1, i), 1e-6);
+        EXPECT_NEAR(velocities(2, i), analytical_velocities(2, i), 1e-6);
+
+        EXPECT_NEAR(positions(0, i), analytical_positions(0, i), 1e-6);
+        EXPECT_NEAR(positions(1, i), analytical_positions(1, i), 1e-6);
+        EXPECT_NEAR(positions(2, i), analytical_positions(2, i), 1e-6);
+    }
 }
