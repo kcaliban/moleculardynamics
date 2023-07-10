@@ -7,6 +7,8 @@ set(MY_MD_HEADERS
   lj_direct_summation.h
   xyz.h
   kinetic.h
+  berendsen.h
+  temperature.h
 )
 
 # List of implementation files
@@ -16,6 +18,8 @@ set(MY_MD_CPP
   lj_direct_summation.cpp
   xyz.cpp
   kinetic.cpp
+  berendsen.cpp
+  temperature.cpp
 )
 
 # Create a static library

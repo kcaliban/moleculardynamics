@@ -23,6 +23,8 @@ set(MY_TESTS_CPP
   test_verlet.cpp
   test_lj_direct_summation.cpp
   test_kinetic.cpp
+  test_temperature.cpp
+  test_berendsen.cpp
 )
 
 # Creating the test executable

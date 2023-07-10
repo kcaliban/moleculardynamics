@@ -8,6 +8,7 @@ public:
     Positions_t positions; 
     Velocities_t velocities; 
     Forces_t forces; 
+    double m = 1.0;
  
     Atoms(const Positions_t &p) : 
             positions{p}, velocities{3, p.cols()}, forces{3, p.cols()} { 
