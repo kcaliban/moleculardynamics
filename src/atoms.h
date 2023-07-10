@@ -8,6 +8,7 @@ public:
     Positions_t positions; 
     Velocities_t velocities; 
     Forces_t forces; 
+    Names_t names;
     double m = 1.0;
  
     Atoms(const Positions_t &p) : 
@@ -15,6 +16,12 @@ public:
         velocities.setZero(); 
         forces.setZero(); 
     } 
+
+    Atoms(const Names_t &names, const Positions_t &p) :
+            names{names}, positions{p}, velocities{3, p.cols()}, forces{3, p.cols()} { 
+        velocities.setZero(); 
+        forces.setZero(); 
+    }
  
     Atoms(const Positions_t &p, const Velocities_t &v) : 
             positions{p}, velocities{v}, forces{3, p.cols()} { 

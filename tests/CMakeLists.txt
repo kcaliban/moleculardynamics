@@ -25,6 +25,7 @@ set(MY_TESTS_CPP
   test_kinetic.cpp
   test_temperature.cpp
   test_berendsen.cpp
+  test_neighbors.cpp
 )
 
 # Creating the test executable

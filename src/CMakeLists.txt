@@ -9,6 +9,8 @@ set(MY_MD_HEADERS
   kinetic.h
   berendsen.h
   temperature.h
+  neighbors.h
+  lj.h
 )
 
 # List of implementation files
@@ -20,6 +22,8 @@ set(MY_MD_CPP
   kinetic.cpp
   berendsen.cpp
   temperature.cpp
+  neighbors.cpp
+  lj.cpp
 )
 
 # Create a static library
