@@ -4,7 +4,7 @@ import pathlib
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python plot_potential_energy.py <file>")
+        print("Usage: python plot_total_energy.py <file>")
         sys.exit(1)
 
     file = sys.argv[1]

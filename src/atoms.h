@@ -18,7 +18,7 @@ public:
     } 
 
     Atoms(const Names_t &names, const Positions_t &p) :
-            names{names}, positions{p}, velocities{3, p.cols()}, forces{3, p.cols()} { 
+            positions{p}, velocities{3, p.cols()}, forces{3, p.cols()}, names{names} { 
         velocities.setZero(); 
         forces.setZero(); 
     }

@@ -130,7 +130,7 @@ NeighborList::update(const Atoms &atoms, double cutoff) {
         return neighborhood;
     }();
 
-    for (int i{0}; i < atoms.nb_atoms(); ++i) {
+    for (size_t i{0}; i < atoms.nb_atoms(); ++i) {
         seed_(i) = n;
 
         Eigen::Array3i cell_coord{

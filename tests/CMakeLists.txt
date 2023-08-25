@@ -26,6 +26,7 @@ set(MY_TESTS_CPP
   test_temperature.cpp
   test_berendsen.cpp
   test_neighbors.cpp
+  test_ducastelle.cpp
 )
 
 # Creating the test executable

@@ -18,6 +18,7 @@ enable_testing()
 
 # We work with C++17 (-std=c++17)
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS " -O3")
 
 # Try to find Eigen if it is installed
 find_package(Eigen3 3.4.0 EXACT NO_MODULE)
@@ -57,6 +58,7 @@ if(USE_MPI)
   find_package(MPI 3 REQUIRED)
 endif()
 
+add_subdirectory(include)     # Included header files
 add_subdirectory(src)         # Contains our MD library
 add_subdirectory(tests)       # Tests for the library
 add_subdirectory(milestones)  # Code for the different project milestones
