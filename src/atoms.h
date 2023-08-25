@@ -14,7 +14,7 @@ public:
     Atoms(const Positions_t &p) : 
             positions{p}, velocities{3, p.cols()}, forces{3, p.cols()} { 
         velocities.setZero(); 
-        forces.setZero(); 
+        forces.setZero();
     } 
 
     Atoms(const Names_t &names, const Positions_t &p) :
@@ -26,7 +26,7 @@ public:
     Atoms(const Positions_t &p, const Velocities_t &v) : 
             positions{p}, velocities{v}, forces{3, p.cols()} { 
         assert(p.cols() == v.cols());
-        forces.setZero(); 
+        forces.setZero();
     } 
 
     Atoms(const int nb_atoms) :
@@ -38,6 +38,12 @@ public:
 
     size_t nb_atoms() const { 
         return positions.cols(); 
+    }
+
+    void resize(const int nb_atoms) {
+        positions.conservativeResize(3, nb_atoms);
+        velocities.conservativeResize(3, nb_atoms);
+        forces.conservativeResize(3, nb_atoms);
     }
 };
 

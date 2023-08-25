@@ -51,7 +51,7 @@ if(NOT Eigen3_FOUND)
 endif()
 
 # Option to turn ON/OFF MPI
-option(USE_MPI "Activate MPI")
+option(USE_MPI "Activate MPI" ON)
 
 # Find MPI if requested
 if(USE_MPI)

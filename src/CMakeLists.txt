@@ -12,6 +12,8 @@ set(MY_MD_HEADERS
   neighbors.h
   lj.h
   ducastelle.h
+  mpi_support.h
+  domain.h
 )
 
 # List of implementation files
@@ -26,6 +28,7 @@ set(MY_MD_CPP
   neighbors.cpp
   lj.cpp
   ducastelle.cpp
+  domain.cpp
 )
 
 # Create a static library

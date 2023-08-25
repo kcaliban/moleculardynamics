@@ -132,15 +132,15 @@ int main(int argc, char *argv[]) {
     write_xyz(traj, atoms);
 
     for (int step = 0; step < nb_steps; step++) {
-        // Update neighbors list
-        neighbor_list.update(atoms, cutoff);
-
         // Apply thermostat
         if (thermostat)
             berendsen_thermostat(atoms, target_temperature, timestep, tau);
 
         // Update positions and velocities using previous forces
         verlet_step1(atoms.positions, atoms.velocities, atoms.forces, timestep, atoms.m);
+
+        // Update neighbors list
+        neighbor_list.update(atoms, cutoff);
 
         // Calculate new forces given new positions
         double potential_energy = ducastelle(atoms, neighbor_list);

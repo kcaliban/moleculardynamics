@@ -38,4 +38,12 @@
 double ducastelle(Atoms &atoms, const NeighborList &neighbor_list, double cutoff = 10.0, double A = 0.2061,
                   double xi = 1.790, double p = 10.229, double q = 4.036, double re = 4.079 / sqrt(2));
 
+/*
+ * Same as above, but only compute the energy of first n atoms.
+ * Used for calculating energies when using domain decomposition.
+ * Relies on the fact that in each domain, ghost atoms come after real atoms in the atoms list.
+ */
+double ducastelle_subset(Atoms &atoms, const NeighborList &neighbor_list, size_t subset_length, double cutoff = 10.0, double A = 0.2061,
+                         double xi = 1.790, double p = 10.229, double q = 4.036, double re = 4.079 / sqrt(2));
+
 #endif //YAMD_GUPTA_H
