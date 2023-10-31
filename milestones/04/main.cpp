@@ -7,10 +7,6 @@
 #include <iostream>
 #include <fstream>
 
-#ifdef USE_MPI
-#include <mpi.h>
-#endif
-
 int main(int argc, char *argv[]) {
     cxxopts::Options options("Milestone 4", "Molecular dynamics simulation");
     options.add_options()

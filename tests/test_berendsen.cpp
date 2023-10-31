@@ -30,7 +30,7 @@ TEST(BerendsenTest, ReachesTemperatureSingleStep) {
     }
 
     // Check temperature
-    EXPECT_NEAR(temperature(atoms), target_temperature, 1e-1);
+    EXPECT_NEAR(temperature(atoms, true), target_temperature, 1e-1);
 }
 
 // Another simple Test for Berendsen thermostat
@@ -56,6 +56,35 @@ TEST(BerendsenTest, ReachesTemperatureMultipleSteps) {
         lj_direct_summation(atoms, epsilon, sigma);
         verlet_step2(atoms.velocities, atoms.forces, timestep);
         berendsen_thermostat(atoms, target_temperature, timestep, 2, true);
+    }
+
+    // Check temperature
+    EXPECT_NEAR(temperature(atoms, true), target_temperature, 1e-1);
+}
+
+// Another simple Test for Berendsen thermostat, but with dimensions
+TEST(BerendsenTest, ReachesTemperatureMultipleStepsDimensions) {
+    int nb_atoms = 10;
+    double target_temperature = 300.0;
+
+    // Initialize atoms with random positions and velocities
+    Atoms atoms(nb_atoms);
+    atoms.m = 1.0;
+    atoms.positions.setRandom();
+    atoms.velocities.setRandom();
+
+    // Set params
+    double epsilon = 1.0;
+    double sigma = 1.0;
+    double timestep = 1;
+    int n_steps = 100;
+
+    // Run simulation for n_steps
+    for (int i = 0; i < n_steps; i++) {
+        verlet_step1(atoms.positions, atoms.velocities, atoms.forces, timestep);
+        lj_direct_summation(atoms, epsilon, sigma);
+        verlet_step2(atoms.velocities, atoms.forces, timestep);
+        berendsen_thermostat(atoms, target_temperature, timestep, 2);
     }
 
     // Check temperature
