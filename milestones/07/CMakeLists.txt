@@ -1,6 +1,5 @@
 configure_file(cluster_923.xyz .)
 configure_file(cluster_3871.xyz .)
-configure_file(equilibrate.sh .)
 configure_file(heat_cap.sh .)
 
 # Defining the executable target

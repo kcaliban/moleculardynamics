@@ -46,4 +46,13 @@ double ducastelle(Atoms &atoms, const NeighborList &neighbor_list, double cutoff
 double ducastelle_subset(Atoms &atoms, const NeighborList &neighbor_list, size_t subset_length, double cutoff = 10.0, double A = 0.2061,
                          double xi = 1.790, double p = 10.229, double q = 4.036, double re = 4.079 / sqrt(2));
 
+std::pair<double, Eigen::ArrayXd> ducastelle_subset_embedding(Atoms &atoms, const NeighborList &neighbor_list, size_t subset_length, double cutoff = 10.0, double A = 0.2061,
+                                                              double xi = 1.790, double p = 10.229, double q = 4.036, double re = 4.079 / sqrt(2));
+
+Eigen::ArrayXd ducastelle_embedding(const Atoms &atoms, const NeighborList &neighbor_list, double cutoff = 10.0, double A = 0.2061,
+                                    double xi = 1.790, double p = 10.229, double q = 4.036, double re = 4.079 / sqrt(2));
+
+Eigen::Array3d ducastelle_force(const Atoms &atoms, const Eigen::ArrayXd &embedding, const size_t atom_a_index, const size_t atom_b_index,
+                                double cutoff = 10.0, double A = 0.2061, double xi = 1.790, double p = 10.229, double q = 4.036, double re = 4.079 / sqrt(2));
+
 #endif //YAMD_GUPTA_H

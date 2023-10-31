@@ -1,4 +1,3 @@
-#include "hello.h"
 #include <Eigen/Dense>
 #include <iostream>
 
@@ -22,7 +21,7 @@ int main(int argc, char *argv[]) {
     std::cout << "Hello I am rank " << rank << " of " << size << "\n";
 
     if (rank == 0)
-      hello_eigen();
+      std::cout << "Hi" << std::endl;
 
 #ifdef USE_MPI
     MPI_Finalize();

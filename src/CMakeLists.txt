@@ -1,6 +1,5 @@
 # List of headers
 set(MY_MD_HEADERS
-  hello.h
   verlet.h
   types.h
   atoms.h
@@ -10,15 +9,17 @@ set(MY_MD_HEADERS
   berendsen.h
   temperature.h
   neighbors.h
+  cubic_lattice.h
   lj.h
   ducastelle.h
   mpi_support.h
   domain.h
+  virial.h
+  volume.h
 )
 
 # List of implementation files
 set(MY_MD_CPP
-  hello.cpp
   verlet.cpp
   lj_direct_summation.cpp
   xyz.cpp
@@ -26,9 +27,12 @@ set(MY_MD_CPP
   berendsen.cpp
   temperature.cpp
   neighbors.cpp
+  cubic_lattice.cpp
   lj.cpp
   ducastelle.cpp
   domain.cpp
+  virial.cpp
+  volume.cpp
 )
 
 # Create a static library

@@ -5,4 +5,4 @@ configure_file(lj54.xyz .)
 add_executable(04 main.cpp)
 
 # Linking against our MD code (propagates all dependencies)
-target_link_libraries(04 PUBLIC my_md_lib)
+target_link_libraries(04 PUBLIC my_md_lib cxxopts)
