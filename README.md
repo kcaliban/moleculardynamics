@@ -1,5 +1,5 @@
 # Molecular Dynamics
-Code for the [molecular dynamics course](https://pastewka.github.io/MolecularDynamics/) offered at the University of Freiburg. Report for the course can be found in `report.pdf`.
+Code for the [molecular dynamics course](https://pastewka.github.io/MolecularDynamics/) offered at the University of Freiburg. Final report for the course can be found in `report.pdf`.
 
 To build and test:
 ```bash
