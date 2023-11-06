@@ -1,5 +1,5 @@
-configure_file(cluster_923.xyz .)
-configure_file(cluster_3871.xyz .)
+configure_file(cluster_3871_transformed.xyz .)
+configure_file(cluster_5083_transformed.xyz .)
 
 # Defining the executable target
 add_executable(08 main.cpp)
