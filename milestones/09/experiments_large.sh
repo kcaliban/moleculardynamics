@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${0%/*}" # set working directory to directory of this script
+
 for K in 0 150 300 450 600
 do
     echo $K

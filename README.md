@@ -34,6 +34,7 @@ To display all possible command-line arguments for milestone `X`:
 # Copy `heat_cap.sh` manually from `./milestones/07` to `./build/milestones/07` (CMake changes the contents of the file).
 # Change sz in heat_cap.sh to the wished size
 ./build/milestones/07/heat_cap.sh
+# Results will be found in `./build/milestones/07`
 ```
 8. (Parallel) Embedded-atom potential with MPI support
 ```bash
@@ -42,7 +43,8 @@ mpirun -n 8 ./build/milestones/08/08 -f ./build/milestones/08/cluster_3871_trans
 ```
 9. (Parallel) Embedded-atom potential with MPI support and gathering stress-strain data
 ```bash
-# Copy `experiments_small.sh`/`experiments_large` from `./milestones/09` to `./build/milestones/09`
+# Copy `experiments_small.sh`/experiments_large` from `./milestones/09` to `./build/milestones/09`
 ./build/milestones/09/experiments_small.sh
 ./build/milestones/09/experiments_large.sh
+# Results will be found in `./build/milestones/09`
 ```
